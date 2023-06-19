@@ -1,0 +1,13 @@
+name: Build
+on: [push]
+
+jobs:
+  build:
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: chainguard-images/actions/apko-build@main
+        with:
+          config: apko.yaml
+          tag: test:test
+          archs: x86_64
