@@ -12,3 +12,7 @@ jobs:
           config: apko.yaml
           tag: test:test
           archs: x86_64
+
+      - runs:
+          docker load < output.tar
+
