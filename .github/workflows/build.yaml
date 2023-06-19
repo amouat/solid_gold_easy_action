@@ -13,6 +13,6 @@ jobs:
           tag: test:test
           archs: x86_64
 
-      - runs:
+      - run:
           docker load < output.tar
 
