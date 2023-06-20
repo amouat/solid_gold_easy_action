@@ -1,0 +1,24 @@
+FROM cgr.dev/chainguard/wolfi-base as local_go_docker
+
+RUN apk update && apk add ca-certificates-bundle build-base openssh go-1.20~=1.20.4
+
+ENV GODEBUG=tarinsecurepath=0,zipinsecurepath=0
+
+ENTRYPOINT /usr/bin/go
+
+CMD help
+
+FROM local_go_docker AS build
+
+WORKDIR /work
+
+COPY . /work
+
+RUN CGO_ENABLED=0 go build -o /bin/server ./
+
+FROM cgr.dev/chainguard/static 
+
+# Copy the executable from the "build" stage.
+COPY --from=build /bin/server /bin/
+
+ENTRYPOINT [ "/bin/server" ]
