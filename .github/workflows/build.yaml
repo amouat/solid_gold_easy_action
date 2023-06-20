@@ -10,7 +10,7 @@ jobs:
       - uses: chainguard-images/actions/apko-build@main
         with:
           config: apko.yaml
-          tag: test:test
+          tag: local_go:latest
           archs: x86_64
 
       - run: |
