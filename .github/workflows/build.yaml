@@ -15,6 +15,7 @@ jobs:
 
       - run: |
           docker load < output.tar
+          docker tag local_go:latest-amd64 local_go:latest
           docker build -t myserver .
 
 
