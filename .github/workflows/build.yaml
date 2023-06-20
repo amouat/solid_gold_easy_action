@@ -13,7 +13,7 @@ jobs:
           tag: test:test
           archs: x86_64
 
-      - run:
+      - run: |
           docker load < output.tar
           docker build -t myserver .
 
